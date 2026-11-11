@@ -3,6 +3,12 @@ package first.team4201.lib.utils;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
+import java.time.Instant;
+import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.DoubleConsumer;
+import java.util.function.LongConsumer;
 import org.wpilib.command2.SubsystemBase;
 import org.wpilib.networktables.NetworkTable;
 import org.wpilib.networktables.NetworkTableEvent.Kind;
@@ -12,13 +18,6 @@ import org.wpilib.networktables.StringPublisher;
 import org.wpilib.system.Notifier;
 import org.wpilib.util.function.BooleanConsumer;
 import org.wpilib.util.function.FloatConsumer;
-
-import java.time.Instant;
-import java.util.EnumSet;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.DoubleConsumer;
-import java.util.function.LongConsumer;
 
 public class TalonFXTuner implements AutoCloseable {
   private final TalonFX m_talon;

@@ -4,13 +4,13 @@
 
 package first.robot.constants;
 
+import static org.wpilib.units.Units.*;
+
 import org.wpilib.math.geometry.Rotation3d;
 import org.wpilib.math.geometry.Transform3d;
 import org.wpilib.math.geometry.Translation3d;
 import org.wpilib.units.measure.Angle;
 import org.wpilib.units.measure.Distance;
-
-import static org.wpilib.units.Units.*;
 
 public final class VISION {
   public enum CAMERA_SERVER {

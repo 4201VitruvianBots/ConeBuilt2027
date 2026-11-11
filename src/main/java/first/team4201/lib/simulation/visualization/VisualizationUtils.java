@@ -1,12 +1,11 @@
 package first.team4201.lib.simulation.visualization;
 
+import java.util.ArrayList;
 import org.wpilib.smartdashboard.Mechanism2d;
 import org.wpilib.smartdashboard.MechanismLigament2d;
 import org.wpilib.smartdashboard.MechanismRoot2d;
 import org.wpilib.telemetry.Telemetry;
 import org.wpilib.util.Color8Bit;
-
-import java.util.ArrayList;
 
 /** Utility class to work with WPILib's {@link Mechanism2d} */
 public class VisualizationUtils {
@@ -36,8 +35,8 @@ public class VisualizationUtils {
     }
 
     /**
-     * Log this display. Telemetry.log() takes a snapshot, so this must be called every cycle for the
-     * display to update.
+     * Log this display. Telemetry.log() takes a snapshot, so this must be called every cycle for
+     * the display to update.
      */
     public void addTunablesDisplay() {
       Telemetry.log(m_name, m_display);
@@ -45,8 +44,8 @@ public class VisualizationUtils {
 
     @Override
     public void close() throws Exception {
-      //for (var root : m_roots) root.close();
-      //m_display.close();
+      // for (var root : m_roots) root.close();
+      // m_display.close();
     }
   }
 

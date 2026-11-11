@@ -1,16 +1,13 @@
 package first.robot.constants;
 
-import first.team4201.lib.config.PIDConstants;
-import first.team4201.lib.utils.ModuleMap;
+import static org.wpilib.units.Units.*;
+
 import first.team4201.lib.config.PIDConstants;
 import first.team4201.lib.utils.ModuleMap.MODULE_POSITION;
+import java.util.Map;
 import org.wpilib.math.geometry.Rotation2d;
 import org.wpilib.math.geometry.Translation2d;
 import org.wpilib.units.measure.*;
-
-import java.util.Map;
-
-import static org.wpilib.units.Units.*;
 
 public class SWERVE {
   public enum MOTOR_TYPE {
@@ -54,9 +51,9 @@ public class SWERVE {
   public static final AngularVelocity kMaxRotation =
       RotationsPerSecond.of(Math.PI * 0.4); // Temporary to reduce speed (original value 2.0).
 
-    public static final PIDConstants autoTranslationConstants = new PIDConstants(2.2, 0, 0);
-    public static final PIDConstants autoRotationConstants = new PIDConstants(4.5, 0, 0);
-    public static final PIDConstants autoCrossTrackConstants = new PIDConstants(0.07, 0, 0);
+  public static final PIDConstants autoTranslationConstants = new PIDConstants(2.2, 0, 0);
+  public static final PIDConstants autoRotationConstants = new PIDConstants(4.5, 0, 0);
+  public static final PIDConstants autoCrossTrackConstants = new PIDConstants(0.07, 0, 0);
 
   // Constants needed for auto align
   public class AUTO_ALIGN {

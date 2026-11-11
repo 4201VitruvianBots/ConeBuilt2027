@@ -5,8 +5,6 @@
 package first.robot;
 
 import org.wpilib.framework.TimedRobot;
-import org.wpilib.tunable.Selectable;
-import org.wpilib.tunable.Tunables;
 
 /**
  * The methods in this class are called automatically corresponding to each mode, as described in
@@ -16,9 +14,7 @@ import org.wpilib.tunable.Tunables;
 public class Robot extends TimedRobot {
   private final RobotContainer m_robotContainer = new RobotContainer();
 
-  public Robot() {
-
-  }
+  public Robot() {}
 
   /**
    * This function is called every 20 ms, no matter the mode. Use this for items like diagnostics

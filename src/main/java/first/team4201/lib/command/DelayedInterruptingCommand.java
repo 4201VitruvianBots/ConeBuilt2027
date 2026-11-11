@@ -1,9 +1,8 @@
 package first.team4201.lib.command;
 
+import java.util.function.BooleanSupplier;
 import org.wpilib.command2.Command;
 import org.wpilib.system.Timer;
-
-import java.util.function.BooleanSupplier;
 
 /**
  * Runs a command until a condition is met, then interrupts it to run another command. If the first

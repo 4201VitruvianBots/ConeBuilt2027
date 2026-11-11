@@ -1,5 +1,3 @@
 package first.robot.constants;
 
-public class FIELD {
-    
-}
+public class FIELD {}

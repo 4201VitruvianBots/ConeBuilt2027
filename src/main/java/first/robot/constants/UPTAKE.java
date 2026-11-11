@@ -1,5 +1,3 @@
 package first.robot.constants;
 
-public class UPTAKE {
-    
-}
+public class UPTAKE {}

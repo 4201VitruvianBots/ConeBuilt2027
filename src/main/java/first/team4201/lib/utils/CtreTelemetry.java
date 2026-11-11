@@ -2,9 +2,10 @@ package first.team4201.lib.utils;
 
 import com.ctre.phoenix6.SignalLogger;
 import com.ctre.phoenix6.swerve.SwerveDrivetrain.SwerveDriveState;
-import first.team4201.lib.simulation.visualization.SwerveModule2d;
 import first.team4201.lib.simulation.FieldSim;
+import first.team4201.lib.simulation.visualization.SwerveModule2d;
 import first.team4201.lib.utils.ModuleMap.MODULE_POSITION;
+import java.util.Map;
 import org.wpilib.math.geometry.Pose2d;
 import org.wpilib.math.geometry.Transform2d;
 import org.wpilib.math.geometry.Translation2d;
@@ -13,17 +14,13 @@ import org.wpilib.math.kinematics.SwerveModulePosition;
 import org.wpilib.math.kinematics.SwerveModuleVelocity;
 import org.wpilib.networktables.*;
 
-import java.util.Map;
-
 public class CtreTelemetry {
   private Map<MODULE_POSITION, Translation2d> m_moduleTranslations;
 
   private FieldSim m_fieldSim;
   private final SwerveModule2d[] m_moduleVisualizer;
 
-  private final Pose2d[] m_swerveModulePoses = {
-    Pose2d.ZERO, Pose2d.ZERO, Pose2d.ZERO, Pose2d.ZERO
-  };
+  private final Pose2d[] m_swerveModulePoses = {Pose2d.ZERO, Pose2d.ZERO, Pose2d.ZERO, Pose2d.ZERO};
   private final Transform2d[] m_moduleTransforms = new Transform2d[4];
 
   /* What to publish over NetworkTables for telemetry */

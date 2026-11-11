@@ -2,12 +2,7 @@ package first.robot.constants;
 
 public class SHOOTER {
 
-    public class FLYWHEEL {
+  public class FLYWHEEL {}
 
-    }
-
-    public class HOOD {
-        
-    }
-    
+  public class HOOD {}
 }

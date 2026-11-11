@@ -1,5 +1,7 @@
 package first.team4201.lib.simulation.visualization;
 
+import static org.wpilib.units.Units.*;
+
 import first.team4201.lib.simulation.visualization.configs.Elevator2dConfig;
 import org.wpilib.math.geometry.Translation2d;
 import org.wpilib.smartdashboard.Mechanism2d;
@@ -10,8 +12,6 @@ import org.wpilib.telemetry.Telemetry;
 import org.wpilib.units.measure.Angle;
 import org.wpilib.units.measure.Distance;
 import org.wpilib.units.measure.LinearVelocity;
-
-import static org.wpilib.units.Units.*;
 
 /** Class to represent an elevator using {@link Mechanism2d} */
 public class Elevator2d implements AutoCloseable {

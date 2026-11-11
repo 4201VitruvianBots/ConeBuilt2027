@@ -1,13 +1,12 @@
 package first.team4201.lib.utils;
 
+import static org.wpilib.units.Units.Seconds;
+
+import java.util.Optional;
 import org.wpilib.driverstation.Alliance;
 import org.wpilib.driverstation.MatchState;
 import org.wpilib.driverstation.RobotState;
 import org.wpilib.units.measure.Time;
-
-import java.util.Optional;
-
-import static org.wpilib.units.Units.Seconds;
 
 public class HubTracker {
   /**

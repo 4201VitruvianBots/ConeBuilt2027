@@ -1,5 +1,11 @@
 package first.team4201.lib.simulation;
 
+import static java.util.Arrays.stream;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import org.wpilib.command2.SubsystemBase;
 import org.wpilib.framework.RobotBase;
 import org.wpilib.math.geometry.Pose2d;
@@ -9,13 +15,6 @@ import org.wpilib.math.trajectory.Trajectory;
 import org.wpilib.networktables.NetworkTableInstance;
 import org.wpilib.smartdashboard.Field2d;
 import org.wpilib.tunable.Tunables;
-
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import static java.util.Arrays.stream;
 
 /** Class to handle all updates to the Field2D widget */
 public class FieldSim extends SubsystemBase implements AutoCloseable {
@@ -42,6 +41,7 @@ public class FieldSim extends SubsystemBase implements AutoCloseable {
   private final Map<String, Pose2d[]> m_objectPoses = new HashMap<>();
 
   private final NetworkTableInstance nt = NetworkTableInstance.getDefault();
+
   // TODO: Alpha 7 has no generic Trajectory protobuf, so the trajectoryProto topic is not published
 
   /** Create a FieldSim object */

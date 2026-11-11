@@ -7,13 +7,12 @@ import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.hardware.CANcoder;
 import com.ctre.phoenix6.hardware.TalonFX;
 import frc.robot.Robot;
+import java.util.HashMap;
+import java.util.Map;
 import org.wpilib.framework.RobotBase;
 import org.wpilib.system.Timer;
 import org.wpilib.util.Alert;
 import org.wpilib.util.Alert.Level;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /** Utility class to interact with CTRE libraries. */
 public final class CtreUtils {

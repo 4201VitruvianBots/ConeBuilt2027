@@ -1,5 +1,7 @@
 package first.team4201.lib.simulation;
 
+import static org.wpilib.units.Units.*;
+
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.sim.TalonFXSimState;
 import first.robot.Robot;
@@ -9,8 +11,6 @@ import org.wpilib.units.AngleUnit;
 import org.wpilib.units.DistanceUnit;
 import org.wpilib.units.measure.Dimensionless;
 import org.wpilib.units.measure.Per;
-
-import static org.wpilib.units.Units.*;
 
 public class TalonFXSim {
 

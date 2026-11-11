@@ -1,12 +1,11 @@
 package first.team4201.lib.utils;
 
-import org.wpilib.math.interpolation.Interpolatable;
-import org.wpilib.math.interpolation.Interpolator;
-
 import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentNavigableMap;
 import java.util.concurrent.ConcurrentSkipListMap;
+import org.wpilib.math.interpolation.Interpolatable;
+import org.wpilib.math.interpolation.Interpolator;
 
 /**
  * A concurrent version of WPIlib's TimeInterpolatableBuffer class to avoid the need for explicit
@@ -66,6 +65,7 @@ public final class ConcurrentTimeInterpolatableBuffer<T> {
   public static double interpolate(double startValue, double endValue, double t) {
     return startValue + (endValue - startValue) * Math.clamp(t, 0, 1);
   }
+
   /**
    * Add a sample to the buffer.
    *

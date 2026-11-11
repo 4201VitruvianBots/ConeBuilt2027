@@ -4,6 +4,9 @@
 
 package first.team4201.lib.simulation.visualization;
 
+import static org.wpilib.units.Units.Meters;
+import static org.wpilib.units.Units.RotationsPerSecond;
+
 import first.team4201.lib.simulation.visualization.configs.Flywheel2dConfig;
 import org.wpilib.math.geometry.Translation2d;
 import org.wpilib.smartdashboard.Mechanism2d;
@@ -12,9 +15,6 @@ import org.wpilib.smartdashboard.MechanismObject2d;
 import org.wpilib.smartdashboard.MechanismRoot2d;
 import org.wpilib.telemetry.Telemetry;
 import org.wpilib.units.measure.AngularVelocity;
-
-import static org.wpilib.units.Units.Meters;
-import static org.wpilib.units.Units.RotationsPerSecond;
 
 /** Class to represent a flywheel using {@link Mechanism2d} */
 public class Flywheel2d implements AutoCloseable {

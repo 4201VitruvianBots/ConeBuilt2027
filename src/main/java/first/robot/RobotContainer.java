@@ -14,7 +14,6 @@ import org.wpilib.tunable.Selectable;
 import org.wpilib.tunable.Tunables;
 import org.wpilib.units.Units;
 
-
 public class RobotContainer {
   private final Selectable<Command> m_autoChooser = new Selectable<>();
   private final Selectable<Boolean> m_sideChooser = new Selectable<>();
@@ -23,7 +22,8 @@ public class RobotContainer {
 
   private CommandXboxController m_driverController;
 
-  private final CtreTelemetry m_swerveTelemetry = new CtreTelemetry(SWERVE.kMaxSpeed.in(Units.MetersPerSecond), SWERVE.kModuleTranslations);
+  private final CtreTelemetry m_swerveTelemetry =
+      new CtreTelemetry(SWERVE.kMaxSpeed.in(Units.MetersPerSecond), SWERVE.kModuleTranslations);
   private final FieldSim m_fieldSim = new FieldSim();
 
   @Logged(importance = Logged.Importance.INFO)
@@ -47,7 +47,6 @@ public class RobotContainer {
   @Logged(importance = Logged.Importance.INFO)
   private Vision m_vision;
 
-
   public RobotContainer() {
     initBindings();
     initSubsystems();
@@ -66,7 +65,6 @@ public class RobotContainer {
 
   public void initBindings() {
     m_driverController = new CommandXboxController(USB.driver_xBoxController);
-
   }
 
   public void initSideChooser() {

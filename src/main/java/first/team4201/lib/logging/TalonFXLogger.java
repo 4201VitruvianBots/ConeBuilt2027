@@ -1,18 +1,17 @@
 package first.team4201.lib.logging;
 
+import static org.wpilib.units.Units.Hertz;
+
 import com.ctre.phoenix6.StatusSignalCollection;
 import com.ctre.phoenix6.hardware.TalonFX;
 import first.robot.constants.CAN;
+import java.util.LinkedHashMap;
+import java.util.Objects;
 import org.wpilib.epilogue.CustomLoggerFor;
 import org.wpilib.epilogue.Epilogue;
 import org.wpilib.epilogue.Logged;
 import org.wpilib.epilogue.logging.ClassSpecificLogger;
 import org.wpilib.telemetry.TelemetryTable;
-
-import java.util.LinkedHashMap;
-import java.util.Objects;
-
-import static org.wpilib.units.Units.Hertz;
 
 @CustomLoggerFor(TalonFX.class)
 public class TalonFXLogger extends ClassSpecificLogger<TalonFX> {

@@ -5,6 +5,9 @@
 package first.robot.subsystems;
 
 import first.robot.constants.USB;
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 import org.wpilib.command2.Subsystem;
 import org.wpilib.command2.SubsystemBase;
 import org.wpilib.driverstation.*;
@@ -19,16 +22,13 @@ import org.wpilib.telemetry.Telemetry;
 import org.wpilib.util.Alert;
 import org.wpilib.util.Alert.Level;
 
-import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
-
 @Logged
 public class Controls extends SubsystemBase {
   private static boolean m_allianceInit;
   private static Alliance m_allianceColor = Alliance.RED;
 
-  // private static Alert m_visionAlert = new Alert("Controls", "Vision alert not properly initialized",
+  // private static Alert m_visionAlert = new Alert("Controls", "Vision alert not properly
+  // initialized",
   // Level.MEDIUM);
 
   private static Timer m_brownoutTimer = new Timer();
@@ -43,20 +43,34 @@ public class Controls extends SubsystemBase {
       Map.ofEntries(
           Map.entry(
               "usb",
-              new Alert("Controls", "usb", "USB connection alert not properly initialized", Level.HIGH)),
+              new Alert(
+                  "Controls", "usb", "USB connection alert not properly initialized", Level.HIGH)),
           Map.entry(
               "brownout",
-              new Alert("Controls", "brownout", "Brownout alert not properly initialized", Level.MEDIUM)),
+              new Alert(
+                  "Controls", "brownout", "Brownout alert not properly initialized", Level.MEDIUM)),
           Map.entry(
               "storage",
-              new Alert("Controls", "storage", "Storage space alert not properly initialized", Level.MEDIUM)),
+              new Alert(
+                  "Controls",
+                  "storage",
+                  "Storage space alert not properly initialized",
+                  Level.MEDIUM)),
           Map.entry(
               "epilogue",
-              new Alert("Controls", "epilogue", "Epilogue Runtime average is > 0.04 seconds!", Level.MEDIUM)),
+              new Alert(
+                  "Controls",
+                  "epilogue",
+                  "Epilogue Runtime average is > 0.04 seconds!",
+                  Level.MEDIUM)),
           // Alerts for setting up the robot properly
           Map.entry(
               "allianceInit",
-              new Alert("Controls", "allianceInit", "Did not get alliance color from FMS/DS!", Level.MEDIUM)),
+              new Alert(
+                  "Controls",
+                  "allianceInit",
+                  "Did not get alliance color from FMS/DS!",
+                  Level.MEDIUM)),
           Map.entry(
               "vision",
               new Alert("Controls", "vision", "Vision Subsystem is not ready!", Level.MEDIUM)),
@@ -126,7 +140,8 @@ public class Controls extends SubsystemBase {
     //   alertMap
     //       .get("brownout")
     //       .setText(
-    //           "A brownout occurred less than a minute ago. Please ensure that a fresh battery has been plugged in.");
+    //           "A brownout occurred less than a minute ago. Please ensure that a fresh battery has
+    // been plugged in.");
     //   alertMap.get("brownout").set(true);
     //   m_brownoutTimer.restart();
     //   m_brownoutLastUpdatedTime = 0.0;

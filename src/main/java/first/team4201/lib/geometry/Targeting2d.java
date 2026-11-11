@@ -1,14 +1,13 @@
 package first.team4201.lib.geometry;
 
-import org.wpilib.fields.Field;
-import org.wpilib.fields.Fields;
-import org.wpilib.math.geometry.Pose2d;
-import org.wpilib.math.geometry.Translation2d;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import org.wpilib.fields.Field;
+import org.wpilib.fields.Fields;
+import org.wpilib.math.geometry.Pose2d;
+import org.wpilib.math.geometry.Translation2d;
 
 public class Targeting2d {
   private static Field aprilTagLayout;

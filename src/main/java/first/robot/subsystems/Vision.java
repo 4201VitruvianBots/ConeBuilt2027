@@ -1,14 +1,17 @@
 package first.robot.subsystems;
 
+import static org.wpilib.units.Units.DegreesPerSecond;
+import static org.wpilib.units.Units.Meters;
+
 import bline.path.Path;
 import com.limelightvision.*;
 import com.limelightvision.PoseEstimate;
-import first.team4201.lib.logging.LimeLightLogger;
-import first.team4201.lib.simulation.FieldSim;
 import first.robot.constants.FIELD;
 import first.robot.constants.FIELD.BUMP_ALIGNMENT_TARGETS;
 import first.robot.constants.VISION.CAMERA_SERVER;
 import first.robot.constants.VISION.TARGET;
+import first.team4201.lib.logging.LimeLightLogger;
+import first.team4201.lib.simulation.FieldSim;
 import org.wpilib.command2.SubsystemBase;
 import org.wpilib.driverstation.DriverStationErrors;
 import org.wpilib.driverstation.RobotState;
@@ -24,9 +27,6 @@ import org.wpilib.networktables.DoublePublisher;
 import org.wpilib.networktables.DoubleSubscriber;
 import org.wpilib.networktables.NetworkTableInstance;
 import org.wpilib.units.measure.Distance;
-
-import static org.wpilib.units.Units.DegreesPerSecond;
-import static org.wpilib.units.Units.Meters;
 
 public class Vision extends SubsystemBase {
   private CommandSwerveDrivetrain m_swerveDriveTrain;
@@ -171,13 +171,7 @@ public class Vision extends SubsystemBase {
       limelight.setIMUMode(IMUMode.EXTERNAL_SEED_INTERNAL);
     }
     limelight.setRobotOrientation(
-        m_swerveDriveTrain.getState().Pose.getRotation().getDegrees(),
-        0,
-        0,
-        0,
-        0,
-        0,
-        true);
+        m_swerveDriveTrain.getState().Pose.getRotation().getDegrees(), 0, 0, 0, 0, 0, true);
 
     PoseEstimate limelightMeasurement;
     if (RobotState.isDisabled() || m_swerveDriveTrain.getState().Velocity.omega <= 0.1) {
@@ -197,7 +191,7 @@ public class Vision extends SubsystemBase {
     if (validResult) {
       // Only good updates reach this point, so use them for updating the robot pose
 
-        // Reset the Swerve Pose with MegaTag1 if we are disabled
+      // Reset the Swerve Pose with MegaTag1 if we are disabled
       if (!limelightMeasurement.isMT2()) {
         m_swerveDriveTrain.resetPose(limelightMeasurement.pose);
       } else {
@@ -209,8 +203,7 @@ public class Vision extends SubsystemBase {
     return validResult;
   }
 
-  public boolean isPoseValid(
-      Limelight limelight, PoseEstimate poseEstimate) {
+  public boolean isPoseValid(Limelight limelight, PoseEstimate poseEstimate) {
     if (poseEstimate == null) {
       if (RobotBase.isReal())
         DriverStationErrors.reportWarning(limelight.getName() + " is not connected", true);
@@ -350,6 +343,7 @@ public class Vision extends SubsystemBase {
     m_kPAutoAlignPublisher.set(12.0);
     m_kDAutoAlignPublisher.set(0.0);
   }
+
   public void disabledPeriodic() {
     m_goal = FIELD.HUB.GOAL.getTargetPosition().toTranslation2d();
   }
@@ -370,9 +364,7 @@ public class Vision extends SubsystemBase {
     }
 
     // Do this to avoid issues with the brief 'disabled' period between auto and teleop
-    if (RobotState.isFMSAttached()
-        && RobotState.isAutonomous()
-        && !matchStarted) {
+    if (RobotState.isFMSAttached() && RobotState.isAutonomous() && !matchStarted) {
       matchStarted = true;
     }
   }

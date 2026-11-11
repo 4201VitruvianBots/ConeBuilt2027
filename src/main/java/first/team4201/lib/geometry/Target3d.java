@@ -1,9 +1,8 @@
 package first.team4201.lib.geometry;
 
+import java.util.*;
 import org.wpilib.fields.Field;
 import org.wpilib.math.geometry.Translation3d;
-
-import java.util.*;
 
 public class Target3d {
   private static Field m_field;
