@@ -2,6 +2,8 @@ package first.robot.subsystems;
 
 import com.limelightvision.*;
 import com.limelightvision.PoseEstimate;
+import first.team4201.lib.logging.LimeLightLogger;
+import first.team4201.lib.simulation.FieldSim;
 import frc.robot.constants.FIELD;
 import frc.robot.constants.FIELD.BUMP_ALIGNMENT_TARGETS;
 import frc.robot.constants.VISION.CAMERA_SERVER;
@@ -35,7 +37,6 @@ public class Vision extends SubsystemBase {
   private Translation2d m_goal = FIELD.HUB.GOAL.getTargetPosition().toTranslation2d();
   // TODO: Re-add this
   //   private LimelightSim visionSim;
-  private Controls m_controls;
 
   Limelight LLF = new Limelight(CAMERA_SERVER.limelightF.getName());
   LimeLightLogger LLFLogger = new LimeLightLogger(LLF);
