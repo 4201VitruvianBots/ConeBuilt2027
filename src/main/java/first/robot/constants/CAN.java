@@ -4,13 +4,33 @@ import org.wpilib.hardware.bus.CANPort;
 
 import com.ctre.phoenix6.CANBus;
 
+import first.robot.subsystems.Flywheel;
+import first.robot.subsystems.Hood;
+import first.robot.subsystems.Indexer;
+import first.robot.subsystems.Intake;
+
 public class CAN {
-  // Check the .txt file for information about what motor goes on what CANBus
+
+    
+  ///@brief On this bus are all Drivetrain devices
   public static final CANBus S0 = new CANBus(CANPort.CAN_S0); 
-  public static final CANBus S1 = new CANBus(CANPort.CAN_S1); 
+  /// On this bus:
+  /// - Indexer 1, 
+  /// - Indexer 2, 
+  /// - Intake 1
+  public static final CANBus S1 = new CANBus(CANPort.CAN_S1);
+  /// On this bus:
+  /// - Hood
   public static final CANBus S2 = new CANBus(CANPort.CAN_S2); 
+  /// On this bus: 
+  /// - Indexer 3,
+  /// - Indexer 4,
+  /// - Intake 2,
+  /// - Intake Pivot
   public static final CANBus S3 = new CANBus(CANPort.CAN_S3); 
+  /// @brief On this bus are all flywheel motors
   public static final CANBus S4 = new CANBus(CANPort.CAN_S4); 
+  /// @brief On this bus just put things we want out
   public static final CANBus dummyBus = new CANBus(CANPort.CAN_D16);
 
   public static final int pigeon = 9;

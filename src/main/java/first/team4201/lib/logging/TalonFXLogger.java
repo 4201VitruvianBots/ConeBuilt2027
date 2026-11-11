@@ -2,7 +2,7 @@ package first.team4201.lib.logging;
 
 import com.ctre.phoenix6.StatusSignalCollection;
 import com.ctre.phoenix6.hardware.TalonFX;
-import frc.robot.constants.CAN;
+import first.robot.constants.CAN;
 import org.wpilib.epilogue.CustomLoggerFor;
 import org.wpilib.epilogue.Epilogue;
 import org.wpilib.epilogue.Logged;
