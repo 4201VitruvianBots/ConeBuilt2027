@@ -1,7 +1,7 @@
 package first.team4201.lib.simulation.visualization.configs;
 
-import frc.team4201.lib.simulation.visualization.Elevator2d;
-import frc.team4201.lib.simulation.visualization.Flywheel2d;
+import first.team4201.lib.simulation.visualization.Elevator2d;
+import first.team4201.lib.simulation.visualization.Flywheel2d;
 import org.wpilib.units.measure.Distance;
 import org.wpilib.util.Color8Bit;
 

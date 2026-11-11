@@ -1,6 +1,6 @@
 package first.team4201.lib.simulation.visualization;
 
-import frc.team4201.lib.simulation.visualization.configs.Arm2dConfig;
+import first.team4201.lib.simulation.visualization.configs.Arm2dConfig;
 import org.wpilib.math.geometry.Translation2d;
 import org.wpilib.smartdashboard.Mechanism2d;
 import org.wpilib.smartdashboard.MechanismLigament2d;

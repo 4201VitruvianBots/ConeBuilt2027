@@ -2,7 +2,7 @@ package first.team4201.lib.simulation;
 
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.sim.TalonFXSimState;
-import frc.robot.Robot;
+import first.robot.Robot;
 import org.wpilib.simulation.LinearSystemSim;
 import org.wpilib.system.RobotController;
 import org.wpilib.units.AngleUnit;

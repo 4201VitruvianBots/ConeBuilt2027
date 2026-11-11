@@ -1,6 +1,6 @@
 package first.team4201.lib.simulation.visualization.configs;
 
-import frc.team4201.lib.simulation.visualization.Arm2d;
+import first.team4201.lib.simulation.visualization.Arm2d;
 import org.wpilib.smartdashboard.Mechanism2d;
 import org.wpilib.smartdashboard.MechanismLigament2d;
 import org.wpilib.units.measure.Angle;

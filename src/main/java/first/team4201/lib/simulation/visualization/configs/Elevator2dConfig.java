@@ -1,7 +1,7 @@
 package first.team4201.lib.simulation.visualization.configs;
 
-import frc.team4201.lib.simulation.visualization.Elevator2d;
-import frc.team4201.lib.simulation.visualization.VisualizationUtils.ELEVATOR_TYPE;
+import first.team4201.lib.simulation.visualization.Elevator2d;
+import first.team4201.lib.simulation.visualization.VisualizationUtils.ELEVATOR_TYPE;
 import org.wpilib.smartdashboard.Mechanism2d;
 import org.wpilib.smartdashboard.MechanismLigament2d;
 import org.wpilib.units.measure.Angle;
