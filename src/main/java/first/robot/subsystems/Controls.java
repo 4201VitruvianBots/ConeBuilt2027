@@ -4,8 +4,7 @@
 
 package first.robot.subsystems;
 
-import frc.robot.constants.FIELD;
-import frc.robot.constants.ROBOT.USB;
+import first.robot.constants.USB;
 import org.wpilib.command2.Subsystem;
 import org.wpilib.command2.SubsystemBase;
 import org.wpilib.driverstation.*;
