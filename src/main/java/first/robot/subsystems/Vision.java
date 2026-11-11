@@ -62,9 +62,7 @@ public class Vision extends SubsystemBase {
     2, 3, 4, 5, 8, 9, 10, 11, 13, 14, 15, 16, 18, 19, 20, 21, 24, 25, 26, 27, 29, 30, 31, 32
   };
 
-  public Vision(Controls controls) {
-    m_controls = controls;
-
+  public Vision() {
     var topickP =
         NetworkTableInstance.getDefault().getTable("SmartDashboard").getDoubleTopic("kPAutoAlign");
     var topickD =
