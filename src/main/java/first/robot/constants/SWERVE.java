@@ -1,7 +1,9 @@
 package first.robot.constants;
 
-import frc.team4201.lib.config.PIDConstants;
-import frc.team4201.lib.utils.ModuleMap.MODULE_POSITION;
+import first.team4201.lib.config.PIDConstants;
+import first.team4201.lib.utils.ModuleMap;
+import first.team4201.lib.config.PIDConstants;
+import first.team4201.lib.utils.ModuleMap.MODULE_POSITION;
 import org.wpilib.math.geometry.Rotation2d;
 import org.wpilib.math.geometry.Translation2d;
 import org.wpilib.units.measure.*;
