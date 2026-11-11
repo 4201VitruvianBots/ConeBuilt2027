@@ -14,19 +14,10 @@ import org.wpilib.tunable.Tunables;
  * this project, you must also update the Main.java file in the project.
  */
 public class Robot extends TimedRobot {
-  private static final String DEFAULT_AUTO = "Default";
-  private static final String CUSTOM_AUTO = "My Auto";
-  private String autoSelected;
-  private final Selectable<String> chooser = new Selectable<>();
+  private final RobotContainer m_robotContainer = new RobotContainer();
 
-  /**
-   * This function is run when the robot is first started up and should be used for any
-   * initialization code.
-   */
   public Robot() {
-    chooser.addDefault("Default Auto", DEFAULT_AUTO);
-    chooser.add("My Auto", CUSTOM_AUTO);
-    Tunables.publish("Auto choices", chooser);
+
   }
 
   /**
@@ -50,25 +41,11 @@ public class Robot extends TimedRobot {
    * above as well.
    */
   @Override
-  public void autonomousInit() {
-    autoSelected = chooser.getSelected();
-    // autoSelected = SmartDashboard.getString("Auto Selector", DEFAULT_AUTO);
-    System.out.println("Auto selected: " + autoSelected);
-  }
+  public void autonomousInit() {}
 
   /** This function is called periodically during autonomous. */
   @Override
-  public void autonomousPeriodic() {
-    switch (autoSelected) {
-      case CUSTOM_AUTO:
-        // Put custom auto code here
-        break;
-      case DEFAULT_AUTO:
-      default:
-        // Put default auto code here
-        break;
-    }
-  }
+  public void autonomousPeriodic() {}
 
   /** This function is called once when teleop is enabled. */
   @Override
