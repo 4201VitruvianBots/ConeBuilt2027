@@ -2,6 +2,7 @@ plugins {
     id "java"
     id "application"
     id "org.wpilib.GradleRIO" version "2027.0.0-alpha-8"
+    id "com.diffplug.spotless" version "8.11.0"
 }
 
 java {
@@ -99,6 +100,21 @@ jar {
     from('src') { into 'backup/src' }
     from('vendordeps') { into 'backup/vendordeps' }
     from('build.gradle') { into 'backup' }
+}
+
+spotless {
+    format 'misc', {
+        target '*.gradle', '.gitattributes', '.gitignore'
+
+        trimTrailingWhitespace()
+        leadingSpacesToTabs()
+        endWithNewline()
+    }
+    java {
+        googleJavaFormat('1.30.0').aosp().reflowLongStrings().skipJavadocFormatting()
+        formatAnnotations()
+        licenseHeader '/* (C)$YEAR */'
+    }
 }
 
 // Configure string concat to always inline compile
