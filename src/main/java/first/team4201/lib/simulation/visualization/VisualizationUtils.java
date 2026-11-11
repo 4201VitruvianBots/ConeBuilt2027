@@ -1,0 +1,72 @@
+package first.team4201.lib.simulation.visualization;
+
+import org.wpilib.smartdashboard.Mechanism2d;
+import org.wpilib.smartdashboard.MechanismLigament2d;
+import org.wpilib.smartdashboard.MechanismRoot2d;
+import org.wpilib.telemetry.Telemetry;
+import org.wpilib.util.Color8Bit;
+
+import java.util.ArrayList;
+
+/** Utility class to work with WPILib's {@link Mechanism2d} */
+public class VisualizationUtils {
+  /** Elevator type for {@link Elevator2d} visualization */
+  public enum ELEVATOR_TYPE {
+    /** CASCADE */
+    CASCADE,
+    /** CONTINUOUS */
+    CONTINUOUS
+  }
+
+  static class MechanismDisplay implements AutoCloseable {
+    private final Mechanism2d m_display = new Mechanism2d(1, 1);
+    private final ArrayList<MechanismRoot2d> m_roots = new ArrayList<>();
+    private final String m_name;
+
+    public MechanismDisplay(double x, double y, MechanismLigament2d mechanismLigament2d) {
+      m_name = mechanismLigament2d.getName();
+      addLigament(x, y, mechanismLigament2d);
+    }
+
+    public void addLigament(double x, double y, MechanismLigament2d mechanismLigament2d) {
+      var m_root = m_display.getRoot(mechanismLigament2d.getName() + "_root", x, y);
+      m_root.append(mechanismLigament2d);
+
+      m_roots.add(m_root);
+    }
+
+    /**
+     * Log this display. Telemetry.log() takes a snapshot, so this must be called every cycle for the
+     * display to update.
+     */
+    public void addTunablesDisplay() {
+      Telemetry.log(m_name, m_display);
+    }
+
+    @Override
+    public void close() throws Exception {
+      //for (var root : m_roots) root.close();
+      //m_display.close();
+    }
+  }
+
+  /**
+   * Update the mechanism's ligament color based on how fast its motor is running
+   *
+   * @param ligament The {@link MechanismLigament2d} to update
+   * @param motorSpeed The mechanism's current motor speed
+   * @param originalColor The mechanism's color as a {@link Color8Bit}
+   */
+  public static void updateMotorColor(
+      MechanismLigament2d ligament, double motorSpeed, Color8Bit originalColor) {
+    double deltaBrightness = Math.abs(motorSpeed) * 75;
+
+    Color8Bit newColor =
+        new Color8Bit(
+            Math.min(originalColor.red + (int) deltaBrightness, 255),
+            Math.min(originalColor.green + (int) deltaBrightness, 255),
+            Math.min(originalColor.blue + (int) deltaBrightness, 255));
+
+    ligament.setColor(newColor);
+  }
+}
