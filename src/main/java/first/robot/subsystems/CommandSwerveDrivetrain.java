@@ -1,10 +1,13 @@
-package frc.robot.subsystems;
+package first.robot.subsystems;
 
 import static org.wpilib.units.Units.MetersPerSecond;
 import static org.wpilib.units.Units.Second;
 import static org.wpilib.units.Units.Volts;
 
 import bline.commands.FollowPath;
+import bline.commands.FollowPathV2;
+import bline.following.DriveType;
+import bline.path.Path;
 import com.ctre.phoenix6.SignalLogger;
 import com.ctre.phoenix6.Utils;
 import com.ctre.phoenix6.hardware.TalonFX;
@@ -13,34 +16,32 @@ import com.ctre.phoenix6.swerve.SwerveDrivetrainConstants;
 import com.ctre.phoenix6.swerve.SwerveModuleConstants;
 import com.ctre.phoenix6.swerve.SwerveRequest;
 import com.limelightvision.PoseEstimate;
-import frc.team4201.lib.config.PIDConstants;
-import org.wpilib.driverstation.*;
-import org.wpilib.epilogue.Logged;
-import org.wpilib.math.linalg.Matrix;
-import org.wpilib.math.controller.PIDController;
-import org.wpilib.math.geometry.Pose2d;
-import org.wpilib.math.geometry.Rotation2d;
-import org.wpilib.math.geometry.Translation2d;
-import org.wpilib.math.kinematics.ChassisVelocities;
-import org.wpilib.math.numbers.N1;
-import org.wpilib.math.numbers.N3;
-import org.wpilib.telemetry.Telemetry;
-import org.wpilib.units.measure.AngularVelocity;
-import org.wpilib.units.measure.LinearVelocity;
-import org.wpilib.system.Notifier;
-import org.wpilib.system.RobotController;
-import org.wpilib.command2.Command;
-import org.wpilib.command2.sysid.SysIdRoutine;
 import first.robot.Robot;
 import first.robot.constants.CAN;
 import first.robot.constants.SWERVE;
 import first.robot.generated.V2Constants.TunerSwerveDrivetrain;
 import first.team4201.lib.command.SwerveSubsystem;
-import java.io.IOException;
+import first.team4201.lib.config.PIDConstants;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
-
+import org.wpilib.command2.Command;
+import org.wpilib.command2.sysid.SysIdRoutine;
+import org.wpilib.driverstation.*;
+import org.wpilib.epilogue.Logged;
+import org.wpilib.math.controller.PIDController;
+import org.wpilib.math.geometry.Pose2d;
+import org.wpilib.math.geometry.Rotation2d;
+import org.wpilib.math.geometry.Translation2d;
+import org.wpilib.math.kinematics.ChassisVelocities;
+import org.wpilib.math.linalg.Matrix;
+import org.wpilib.math.numbers.N1;
+import org.wpilib.math.numbers.N3;
+import org.wpilib.system.Notifier;
+import org.wpilib.system.RobotController;
+import org.wpilib.telemetry.Telemetry;
+import org.wpilib.units.measure.AngularVelocity;
+import org.wpilib.units.measure.LinearVelocity;
 
 /**
  * Class that extends the Phoenix 6 SwerveDrivetrain class and implements Subsystem so it can easily
@@ -73,11 +74,11 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Sw
   private final TalonFX BR_steerMotor = getModule(3).getSteerMotor();
 
   private final TalonFX[] driveMotors = {
-      FL_driveMotor, FR_driveMotor, BL_driveMotor, BR_driveMotor
+    FL_driveMotor, FR_driveMotor, BL_driveMotor, BR_driveMotor
   };
 
   private final TalonFX[] steerMotors = {
-      FL_steerMotor, FR_steerMotor, BL_steerMotor, BR_steerMotor
+    FL_steerMotor, FR_steerMotor, BL_steerMotor, BR_steerMotor
   };
 
   private static final double kSimLoopPeriod = 0.005; // 5 ms
@@ -123,9 +124,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Sw
               // Log state with SignalLogger class
               state -> SignalLogger.writeString("SysIdTranslation_State", state.toString())),
           new SysIdRoutine.Mechanism(
-              output -> setControl(m_translationCharacterization.withVolts(output)),
-              null,
-              this));
+              output -> setControl(m_translationCharacterization.withVolts(output)), null, this));
 
   /* SysId routine for characterizing steer. This is used to find PID gains for the steer motors.
    */
@@ -189,8 +188,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Sw
         value -> Telemetry.log(value.getFirst(), value.getSecond()));
     FollowPath.setBooleanLoggingConsumer(
         value -> Telemetry.log(value.getFirst(), value.getSecond()));
-    FollowPath.setPoseLoggingConsumer(
-        value -> Telemetry.log(value.getFirst(), value.getSecond()));
+    FollowPath.setPoseLoggingConsumer(value -> Telemetry.log(value.getFirst(), value.getSecond()));
     FollowPath.setTranslationListLoggingConsumer(
         value -> Telemetry.log(value.getFirst(), value.getSecond()));
   }
@@ -261,27 +259,28 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Sw
             .withTargetDirection(headingTarget));
   }
 
-  public FollowPath.Builder autoBuilder =
-      new FollowPath.Builder(
-          this,
-          () -> getState().Pose,
-          () -> getState().Velocity,
-          this::setChassisVelocities,
-          new PIDController(
-              getAutoTranslationPIDConstants().kP,
-              getAutoTranslationPIDConstants().kI,
-              getAutoTranslationPIDConstants().kD),
-          new PIDController(
-              getAutoRotationPIDConstants().kP,
-              getAutoRotationPIDConstants().kI,
-              getAutoRotationPIDConstants().kD),
-          new PIDController(
-              getAutoCrossTrackPIDConstants().kP,
-              getAutoCrossTrackPIDConstants().kI,
-              getAutoCrossTrackPIDConstants().kD,
-              Robot.DEFAULT_PERIOD))
-          .withShouldFlip(CommandSwerveDrivetrain::shouldFlipPath)
-          .withPoseReset(this::resetPose);
+  public FollowPathV2.Builder autoBuilder =
+      new FollowPathV2.Builder(
+              DriveType.SWERVE,
+              this,
+              () -> getState().Pose,
+              this::resetPose,
+              () -> getState().Velocity,
+              this::setChassisVelocities,
+              new PIDController(
+                  getAutoTranslationPIDConstants().kP,
+                  getAutoTranslationPIDConstants().kI,
+                  getAutoTranslationPIDConstants().kD),
+              new PIDController(
+                  getAutoRotationPIDConstants().kP,
+                  getAutoRotationPIDConstants().kI,
+                  getAutoRotationPIDConstants().kD),
+              new PIDController(
+                  getAutoCrossTrackPIDConstants().kP,
+                  getAutoCrossTrackPIDConstants().kI,
+                  getAutoCrossTrackPIDConstants().kD,
+                  Robot.DEFAULT_PERIOD))
+          .withDefaultShouldFlip();
 
   private static boolean shouldFlipPath() {
     var alliance = MatchState.getAlliance();
@@ -350,7 +349,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Sw
 
   @Override
   public PIDConstants getAutoCrossTrackPIDConstants() {
-    return SWERVE.autoCrossTrackConstants ;
+    return SWERVE.autoCrossTrackConstants;
   }
 
   /**
@@ -399,16 +398,13 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Sw
             "Back Left Drive Motor (" + CAN.backLeftDriveMotor + ")", driveMotor.isConnected());
       } else if (driveMotor.getDeviceID() == CAN.frontLeftDriveMotor) {
         motorConnectionStatus.put(
-            "Front Left Drive Motor (" + CAN.frontLeftDriveMotor + ")",
-            driveMotor.isConnected());
+            "Front Left Drive Motor (" + CAN.frontLeftDriveMotor + ")", driveMotor.isConnected());
       } else if (driveMotor.getDeviceID() == CAN.frontRightDriveMotor) {
         motorConnectionStatus.put(
-            "Front Right Drive Motor (" + CAN.frontRightDriveMotor + ")",
-            driveMotor.isConnected());
+            "Front Right Drive Motor (" + CAN.frontRightDriveMotor + ")", driveMotor.isConnected());
       } else if (driveMotor.getDeviceID() == CAN.backRightDriveMotor) {
         motorConnectionStatus.put(
-            "Back Right Drive Motor (" + CAN.backRightDriveMotor + ")",
-            driveMotor.isConnected());
+            "Back Right Drive Motor (" + CAN.backRightDriveMotor + ")", driveMotor.isConnected());
       }
     }
     for (TalonFX steerMotor : steerMotors) {
@@ -421,8 +417,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Sw
             "Front Left Turn Motor (" + CAN.frontLeftTurnMotor + ")", steerMotor.isConnected());
       } else if (steerMotor.getDeviceID() == CAN.frontRightTurnMotor) {
         motorConnectionStatus.put(
-            "Front Right Turn Motor (" + CAN.frontRightTurnMotor + ")",
-            steerMotor.isConnected());
+            "Front Right Turn Motor (" + CAN.frontRightTurnMotor + ")", steerMotor.isConnected());
       } else if (steerMotor.getDeviceID() == CAN.backRightTurnMotor) {
         motorConnectionStatus.put(
             "Back Right Turn Motor (" + CAN.backRightTurnMotor + ")", steerMotor.isConnected());
@@ -491,13 +486,5 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Sw
   @Override
   public void addVisionMeasurement(PoseEstimate poseEstimate) {
     throw new UnsupportedOperationException("Unimplemented method 'addVisionMeasurement'");
-  }
-
-  public Command generateBLineCommand(String pathName, Supplier<Boolean> allianceFlip) {
-    return autoBuilder.withShouldMirror(allianceFlip).build(new Path(pathName)).andThen(() -> setNeutralMode(SWERVE.MOTOR_TYPE.DRIVE, NeutralModeValue.Coast));
-  }
-
-  public Command generateBLineCommand(String pathName) {
-    return generateBLineCommand(pathName, () -> false);
   }
 }
